@@ -6,6 +6,6 @@ sortOptions:
   order: fifo
 resources:
   - namespace.yaml
-  - subscription.yaml
   - operatorgroup.yaml
-  - ./automation-controller/
+  - subscription.yaml
+  - ./automation-controller
