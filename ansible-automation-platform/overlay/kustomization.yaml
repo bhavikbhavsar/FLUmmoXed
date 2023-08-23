@@ -1,0 +1,13 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# This feature was introduced in Kustomization 5.0 to control order
+sortOptions:
+  order: fifo
+
+bases:
+  - ../base/
+
+patches:
+  - path: ./automation-controller/automationcontroller.yaml

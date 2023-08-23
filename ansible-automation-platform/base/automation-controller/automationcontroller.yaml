@@ -13,7 +13,6 @@ spec:
   auto_upgrade: true
   create_preload_data: true
   garbage_collect_secrets: false
-  hostname: test.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com
   image_pull_policy: IfNotPresent
   ingress_type: Route
   ipv6_disabled: false
@@ -29,7 +28,6 @@ spec:
   projects_storage_access_mode: ReadWriteMany
   projects_storage_size: 8Gi
   replicas: 1
-  route_host: test.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com
   route_tls_termination_mechanism: Edge
   service_type: NodePort
   set_self_labels: true
