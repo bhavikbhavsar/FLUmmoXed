@@ -8,3 +8,4 @@ resources:
   - namespace.yaml
   - subscription.yaml
   - operatorgroup.yaml
+  - ./automation-controller/
