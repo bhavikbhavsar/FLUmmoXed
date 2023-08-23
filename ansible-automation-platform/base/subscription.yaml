@@ -5,7 +5,7 @@ metadata:
   name: ansible-automation-platform-operator
   namespace: ansible-automation-platform
 spec:
-  installPlanApproval: Manual
+  installPlanApproval: Automatic
   name: ansible-automation-platform-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
