@@ -1,0 +1,17 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  finalizers:
+  - finalizers.fluxcd.io
+  # This name needs to match the name of the SSH secret
+  name: customer-deployment
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  secretRef:
+    name: customer-deployment
+  timeout: 60s
+  #url: ssh://git@github.com/Ansible-SaaS/model-aap-deployment.git
+  url: ssh://git@github.com/dhageman/FLUmmoXed.git

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  # This name must match the name of the git repository source
+  name: customer-deployment
+  namespace: flux-system
+data:
+  identity: QU5TSUJMRSBBVVRPTUFUSU9OIFBMQVRGT1JNCg==
+  identity.pub: QU5TSUJMRSBBVVRPTUFUSU9OIFBMQVRGT1JNCg==
+  known_hosts: QU5TSUJMRSBBVVRPTUFUSU9OIFBMQVRGT1JNCg==

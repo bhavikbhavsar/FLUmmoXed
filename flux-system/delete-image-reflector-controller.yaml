@@ -1,0 +1,11 @@
+$patch: delete
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: image-reflector-controller
+    app.kubernetes.io/instance: flux-system
+    app.kubernetes.io/part-of: flux
+    control-plane: controller
+  name: image-reflector-controller
+  namespace: flux-system

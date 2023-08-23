@@ -1,0 +1,46 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# This feature was introduced in Kustomization 5.0 to control order
+sortOptions:
+  order: fifo
+resources:
+  - install.yaml
+  - git-deployment-key.yaml
+  - git-repository.yaml
+  - git-deployment-key.yaml
+  - git-repository.yaml
+  - git-kustomization.yaml
+patches:
+  # We don't need support for Helm
+  - path: delete-helm-controller.yaml
+  # We are not using any container image automation
+  - path: delete-image-automation-controller.yaml
+  - path: delete-image-reflector-controller.yaml
+  # OpenShift needs special securityContexts for the deployments
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: all
+      spec:
+        template:
+          spec:
+            containers:
+              - name: manager
+                securityContext:
+                  runAsUser: 65534
+                  seccompProfile:
+                    $patch: delete      
+    target:
+      kind: Deployment
+      labelSelector: app.kubernetes.io/part-of=flux
+  # Openshift will label the namespace appropriately
+  - patch: |-
+      - op: remove
+        path: /metadata/labels/pod-security.kubernetes.io~1warn
+      - op: remove
+        path: /metadata/labels/pod-security.kubernetes.io~1warn-version      
+    target:
+      kind: Namespace
+      labelSelector: app.kubernetes.io/part-of=flux
