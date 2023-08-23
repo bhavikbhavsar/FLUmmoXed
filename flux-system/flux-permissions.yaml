@@ -1,0 +1,39 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: system:openshift:scc:nonroot
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:nonroot
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: system:serviceaccount::kustomize-controller
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: system:serviceaccount::helm-controller
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: system:serviceaccount::source-controller
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: system:serviceaccount::notification-controller
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: system:serviceaccount::image-automation-controller
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: system:serviceaccount::image-reflector-controller
+- kind: ServiceAccount
+  name: kustomize-controller
+  namespace: flux-system
+- kind: ServiceAccount
+  name: source-controller
+  namespace: flux-system
+- kind: ServiceAccount
+  name: notification-controller
+  namespace: flux-system
+- kind: ServiceAccount
+  name: notifications-controller
+  namespace: flux-system

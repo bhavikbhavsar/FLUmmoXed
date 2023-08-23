@@ -5,6 +5,7 @@ kind: Kustomization
 sortOptions:
   order: fifo
 resources:
+  - flux-permissions.yaml
   - install.yaml
   - git-deployment-key.yaml
   - git-repository.yaml
