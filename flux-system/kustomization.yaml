@@ -9,8 +9,6 @@ resources:
   - install.yaml
   - git-deployment-key.yaml
   - git-repository.yaml
-  - git-deployment-key.yaml
-  - git-repository.yaml
   - git-kustomization.yaml
 patches:
   # We don't need support for Helm
