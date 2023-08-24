@@ -6,4 +6,4 @@ sortOptions:
  order: fifo
 
 resources:
-  - automationcontroller.yaml
+  - automationhub.yaml

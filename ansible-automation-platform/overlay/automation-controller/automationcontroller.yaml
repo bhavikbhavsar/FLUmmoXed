@@ -1,0 +1,8 @@
+apiVersion: automationcontroller.ansible.com/v1beta1
+kind: AutomationController
+metadata:
+  name: ansible-controller
+  namespace: ansible-automation-platform
+spec:
+  hostname: controller.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com
+  route_host: controller.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com

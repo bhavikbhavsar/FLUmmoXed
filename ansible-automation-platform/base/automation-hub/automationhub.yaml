@@ -1,20 +1,27 @@
 apiVersion: automationhub.ansible.com/v1beta1
 kind: AutomationHub
 metadata:
+  labels:
+    app.kubernetes.io/component: automation-hub
+    app.kubernetes.io/part-of: ansible-hub
   name: automation-hub
   namespace: ansible-automation-platform
 spec:
-  container_token_secret: aaphub-token
+  api:
+    log_level: INFO
+    replicas: 1
+  content:
+    log_level: INFO
+    replicas: 0
   file_storage_access_mode: ReadWriteMany
-  file_storage_size: 100Gi
+  file_storage_size: 20Gi
+  file_storage_storage_class: gp3-csi
   gunicorn_api_workers: 2
   gunicorn_content_workers: 2
   gunicorn_timeout: 90
   haproxy_timeout: 180s
   image_pull_policy: IfNotPresent
-  image_pull_secrets:
-  - redhat-operators-pull-secret
-  ingress_type: none
+  ingress_type: Route
   loadbalancer_port: 80
   loadbalancer_protocol: http
   nginx_client_max_body_size: 10m
@@ -22,25 +29,28 @@ spec:
   nginx_proxy_read_timeout: 120s
   nginx_proxy_send_timeout: 120s
   no_log: true
-  object_storage_azure_secret: automation-hub-object-storage
-  pulp_settings:
-    analytics: false
-    ansible_api_hostname: https://hub.aapjfri6q2uqpuwi.az.ansiblecloud.com
-    connected_ansible_controllers:
-    - https://controller.aapjfri6q2uqpuwi.az.ansiblecloud.com
-    content_origin: https://hub.aapjfri6q2uqpuwi.az.ansiblecloud.com
-    galaxy_collection_signing_service: ""
-    galaxy_container_signing_service: ""
-    private_key_path: /etc/pulp/keys/container_auth_private_key.pem
-    public_key_path: /etc/pulp/keys/container_auth_public_key.pem
-    redirect_to_object_storage: "False"
-    token_auth_disabled: "False"
-    token_server: https://hub.aapjfri6q2uqpuwi.az.ansiblecloud.com/token/
-    token_signature_algorithm: ES256
+  postgres_resource_requirements:
+    limits:
+      cpu: 1000m
+      memory: 8Gi
+    requests:
+      cpu: 500m
+      memory: 2Gi
+  postgres_storage_class: gp3-csi
+  postgres_storage_requirements:
+    limits:
+      storage: 50Gi
+    requests:
+      storage: 8Gi
+  redis:
+    log_level: INFO
+    replicas: 1
+  redis_storage_class: gp3-csi
+  resource_manager:
+    replicas: 1
   route_tls_termination_mechanism: Edge
-  storage_type: Azure
+  storage_type: File
+  web:
+    replicas: 1
   worker:
     replicas: 2
-    resource_requirements:
-      limits:
-        memory: 5Gi

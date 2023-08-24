@@ -1,0 +1,11 @@
+apiVersion: automationhub.ansible.com/v1beta1
+kind: AutomationHub
+metadata:
+  labels:
+    app.kubernetes.io/component: automation-hub
+    app.kubernetes.io/part-of: ansible-hub
+  name: automation-hub
+  namespace: ansible-automation-platform
+spec:
+  hostname: hub.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com
+  route_host: hub.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com
