@@ -4,5 +4,5 @@ metadata:
   name: ansible-controller
   namespace: ansible-automation-platform
 spec:
-  hostname: test.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com
-  route_host: test.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com
+  hostname: controller.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com
+  route_host: controller.apps.rosa.dhageman-hcp.guj9.p3.openshiftapps.com
